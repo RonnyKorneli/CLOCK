@@ -5,27 +5,23 @@ const clock = () => {
     let min = getTime.getMinutes();
     let sec = getTime.getSeconds();
 
-    if (sec <= 9) {
 
-        document.getElementById("hours").innerHTML = hrs;
-        document.getElementById("minutes").innerHTML = min;
-        document.getElementById("seconds").innerHTML = `0${sec}`;
-    } else if (min <= 9) {
-
-        document.getElementById("hours").innerHTML = hrs;
-        document.getElementById("minutes").innerHTML = `0${min}`;
-        document.getElementById("seconds").innerHTML = sec;
-
-    } else {
-
-        document.getElementById("hours").innerHTML = hrs;
-        document.getElementById("minutes").innerHTML = min;
-        document.getElementById("seconds").innerHTML = sec;
+    if (hrs > 12) {
+        document.getElementById("AmPm").innerHTML = "PM"
     }
-
-    if (hrs == 24 || hrs <= 12 ) {
+    if (hrs == 0) {
+        hrs = 12;
         document.getElementById("AmPm").innerHTML = "AM"
     }
+
+    hrs = hrs < 10 ? "0" + hrs : hrs;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+
+    document.getElementById("hours").innerHTML = hrs;
+    document.getElementById("minutes").innerHTML = min;
+    document.getElementById("seconds").innerHTML = sec;
+    
 
 }
 let result = setInterval(clock, 1000);
